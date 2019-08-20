@@ -10,7 +10,7 @@ class AnimalTokens:
                                   'animals_short.yaml',
                                   'verbs.yaml'),
                  with_replacement=False,
-                 previously_generated=set()):
+                 previously_generated=[]):
         this_folder = Path(os.path.dirname(os.path.abspath(__file__)))
         self.word_lists = []
         for file_path in word_list_files:
@@ -19,7 +19,7 @@ class AnimalTokens:
                 processed_path = this_folder / processed_path
             with open(processed_path, 'r') as f:
                 self.word_lists.append(yaml.safe_load(f))
-        self.previously_generated = previously_generated
+        self.previously_generated = set(previously_generated)
         self.with_replacement = with_replacement
 
     def random_token(self, sep='', maxlen=21):
