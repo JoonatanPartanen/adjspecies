@@ -1,1 +1,1 @@
-include adjspecies/*.txt
+recursive-include adjspecies *
