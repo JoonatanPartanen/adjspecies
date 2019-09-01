@@ -1,6 +1,6 @@
 # Relatively common verbs
 # 8 characters or under
-# Single word, no hyphens
+# Single word, no spaces or hyphens
 # Two syllables or less
 # From: https://en.wiktionary.org/wiki/Category:English_intransitive_verbs
 # With: Wikimedia API and https://pypi.org/project/syllables/

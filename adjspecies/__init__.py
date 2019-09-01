@@ -8,9 +8,7 @@ class AnimalTokens:
     def __init__(self,
                  word_list_files=('adjectives.yaml',
                                   'animals_short.yaml',
-                                  'verbs.yaml'),
-                 with_replacement=False,
-                 previously_generated=[]):
+                                  'verbs.yaml')):
         this_folder = Path(os.path.dirname(os.path.abspath(__file__)))
         self.word_lists = []
         for file_path in word_list_files:
@@ -19,16 +17,8 @@ class AnimalTokens:
                 processed_path = this_folder / processed_path
             with open(processed_path, 'r') as f:
                 self.word_lists.append(yaml.safe_load(f))
-        self.previously_generated = set(previously_generated)
-        self.with_replacement = with_replacement
+        self.reroll_limit = 5
 
-    def random_token(self, sep='', maxlen=21):
-        while True:
-            token = sep.join(choice(lst) for lst in self.word_lists)
-            if maxlen and len(token) > maxlen:
-                continue
-            if not self.with_replacement and token in self.previously_generated:
-                continue
-            break
-        self.previously_generated.add(token)
+    def random_token(self, sep=''):
+        token = sep.join(choice(lst) for lst in self.word_lists)
         return token
